@@ -1,5 +1,3 @@
-#include "PelcoDProtocolParser.cpp"
-#include "PelcoDProtocolParser.h"
 #include "Pelco_Dcode.h"
 #include <map>
 
@@ -21,7 +19,7 @@ namespace esphome {
         int data_2 = 0) {
             uint8_t packet[7];
             uint8_t address = this->address_;
-            pelco::PelcoDCommands command_ID = this->command_map_[command];
+            auto command_ID = this->command_map_[command];
             uint8_t d_1 = data_1;
             uint8_t d_2 = data_2;
             auto protocolparser = new pelco::PelcoDProtocolParser();
