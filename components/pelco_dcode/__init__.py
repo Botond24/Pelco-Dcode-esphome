@@ -13,7 +13,7 @@ CONFIG_SCHEMA = (
 		{
 			cv.GenerateID(): cv.declare_id(PelcoDcode),
 			cv.Required(CONF_UART_ID): cv.use_id(uart.UARTDevice),
-			cv.Optional(ADDRESS, default=0): cv.int_range(0, 255),
+			cv.Optional(ADDRESS, default=1): cv.int_range(1, 255),
 		}
 	)
 		.extend(cv.COMPONENT_SCHEMA)
