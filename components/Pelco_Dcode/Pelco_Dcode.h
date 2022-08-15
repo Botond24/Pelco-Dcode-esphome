@@ -1,7 +1,6 @@
 #pragma once
 
 #include "esphome/core/component.h"
-#include "esphome/core/helpers.h"
 #include "esphome/components/uart/uart.h"
 #include "libraries/PelcoDProtocolParser/PelcoDProtocolParser.h"
 
@@ -22,7 +21,7 @@ class Pelco_Dcode : public esphome::Component /*public esphome::UARTComponent*/ 
 
         void set_address(uint8_t address) { this->address_ = address; }
 
-        void GetCommand(uint8_t address, pelco::PelcoDCommands command_ID, uint8_t data_1 = 0, uint8_t data_2 = 0);
+        void send_command(string command, int data_1 = 0, int data_2 = 0);
 
     protected:
         esphome::uart::UARTComponent *stream_{nullptr};

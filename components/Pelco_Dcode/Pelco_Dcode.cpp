@@ -15,7 +15,7 @@ namespace esphome {
         
     }
 
-    void PelcoDcode::SendCommand(
+    void PelcoDcode::send_command(
         string command,
         int data_1 = 0,
         int data_2 = 0) {
