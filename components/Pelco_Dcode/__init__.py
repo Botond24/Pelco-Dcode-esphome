@@ -6,12 +6,12 @@ from esphome.const import CONF_ID, CONF_UART_ID
 DEPENDENCIES = ["uart"]
 ADDRESS = "address"
 
-Pelco_Dcode = cg.register_component("Pelco_Dcode", cg.Component)
+PelcoDcode = cg.register_component("PelcoDcode", cg.Component)
 
 CONFIG_SCHEMA = (
 	cv.Schema(
 		{
-			cv.GenerateID(): cv.declare_id(Pelco_Dcode),
+			cv.GenerateID(): cv.declare_id(PelcoDcode),
 			cv.Required(CONF_UART_ID): cv.use_id(uart.UARTDevice),
 			cv.Optional(ADDRESS, default=0): cv.int_range(0, 255),
 		}

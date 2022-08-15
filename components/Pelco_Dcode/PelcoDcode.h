@@ -7,9 +7,9 @@
 
 
 
-class Pelco_Dcode : public esphome::Component /*public esphome::UARTComponent*/ {
+class PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
     public:
-        Pelco_Dcode() = default;
+        PelcoDcode() = default;
         /*Pelco_Dcode(esphome::UARTComponent *parent) : UARTComponent(parent) {}*/
         void set_uart_parent(esphome::uart::UARTComponent *parent) { this->stream_ = parent; }
 
