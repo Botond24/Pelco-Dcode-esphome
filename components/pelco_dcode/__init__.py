@@ -6,7 +6,7 @@ from esphome.const import CONF_ID, CONF_UART_ID
 DEPENDENCIES = ["uart"]
 ADDRESS = "address"
 
-PelcoDcode = cg.register_component("PelcoDcode", cg.Component)
+PelcoDcode = cg.register_component("pelco_dcode", cg.Component)
 
 CONFIG_SCHEMA = (
 	cv.Schema(
