@@ -2,12 +2,12 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
-#include "libraries/PelcoDProtocolParser/PelcoDProtocolParser.h"
+#include "./libraries/PelcoDProtocolParser/PelcoDProtocolParser.h"
 
 
 
 namespace esphome {
-class PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
+class PelcoDcode : public Component /*public UARTComponent*/ {
     public:
         PelcoDcode() = default;
         /*Pelco_Dcode(esphome::UARTComponent *parent) : UARTComponent(parent) {}*/
