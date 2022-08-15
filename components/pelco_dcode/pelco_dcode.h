@@ -94,4 +94,4 @@ class PelcoDcode : public Component /*public UARTComponent*/ {
         };
        
 };
-}:
+};
