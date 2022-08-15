@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
 #include "PelcoDProtocolParser.h"
+#include <map>
 
 
 

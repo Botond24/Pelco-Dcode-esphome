@@ -1,6 +1,7 @@
 #include "PelcoDProtocolParser.cpp"
 #include "PelcoDProtocolParser.h"
 #include "Pelco_Dcode.h"
+#include <map>
 
 
 static const char *TAG = "pelcodcode";
@@ -15,7 +16,7 @@ namespace esphome {
     }
 
     void PelcoDcode::send_command(
-        string command,
+        String command,
         int data_1 = 0,
         int data_2 = 0) {
             uint8_t packet[7];
