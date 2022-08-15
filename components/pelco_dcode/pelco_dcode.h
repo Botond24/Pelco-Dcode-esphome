@@ -7,7 +7,7 @@
 
 
 
-class PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
+class epshome::PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
     public:
         PelcoDcode() = default;
         /*Pelco_Dcode(esphome::UARTComponent *parent) : UARTComponent(parent) {}*/

@@ -23,7 +23,8 @@ namespace esphome {
             pelco::PelcoDCommands command_ID = this->command_map_[command];
             uint8_t d_1 = data_1;
             uint8_t d_2 = data_2;
-            pelco::PelcoDProtocolParser::GetCommand(&packet, address, command_ID, d_1, d_2);
+            auto protocolparser = new pelco::PelcoDProtocolParser();
+            protocolparser->GetCommand(&packet, address, command_ID, d_1, d_2);
             this->stream_->write_array(packet, 7);
             ESP_LOGD(TAG, "Pelco-Dcode: %s", command.c_str());
             ESP_LOGD(TAG, "  Packet: %u", packet);
