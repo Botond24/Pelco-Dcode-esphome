@@ -6,8 +6,8 @@
 
 
 
-
-class epshome::PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
+namespace esphome {
+class PelcoDcode : public esphome::Component /*public esphome::UARTComponent*/ {
     public:
         PelcoDcode() = default;
         /*Pelco_Dcode(esphome::UARTComponent *parent) : UARTComponent(parent) {}*/
@@ -93,3 +93,4 @@ class epshome::PelcoDcode : public esphome::Component /*public esphome::UARTComp
         };
        
 };
+}:
