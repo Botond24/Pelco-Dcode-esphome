@@ -2,7 +2,7 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
-#include "./libraries/PelcoDProtocolParser/PelcoDProtocolParser.h"
+#include "PelcoDProtocolParser.h"
 
 
 

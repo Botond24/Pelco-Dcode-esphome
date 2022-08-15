@@ -1,6 +1,6 @@
-#include "./libraries/PelcoDProtocolParser/PelcoDProtocolParser.cpp"
-#include "./libraries/PelcoDProtocolParser/PelcoDProtocolParser.h"
-#include "./Pelco_Dcode.h"
+#include "PelcoDProtocolParser.cpp"
+#include "PelcoDProtocolParser.h"
+#include "Pelco_Dcode.h"
 
 
 static const char *TAG = "pelcodcode";
