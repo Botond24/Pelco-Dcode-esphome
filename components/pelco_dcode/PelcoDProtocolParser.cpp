@@ -28,7 +28,7 @@ void pelco::PelcoDProtocolParser::GetChecksum(uint8_t* packet)
 bool pelco::PelcoDProtocolParser::GetCommand(
             uint8_t* packet,
             uint8_t address,
-            pelco::PelcoDCommands command_ID,
+            int32_t command_ID,
             uint8_t data_1,
             uint8_t data_2)
 {
