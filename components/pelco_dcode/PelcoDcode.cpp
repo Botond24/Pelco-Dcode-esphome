@@ -3,12 +3,11 @@
 #include "Pelco_Dcode.h"
 
 
-
+static const char *TAG = "pelcodcode";
 
 namespace esphome {
     void PelcoDcode::setup() {
-    auto uart = this->get_component<UARTComponent>();
-
+    ESP_LOGCONFIG(TAG, "Pelco-Dcode starting...");
         
     }
     void PelcoDcode::loop() {
@@ -26,6 +25,8 @@ namespace esphome {
             uint8_t d_2 = data_2;
             pelco::PelcoDProtocolParser::GetCommand(&packet, address, command_ID, d_1, d_2);
             this->stream_->write_array(packet, 7);
+            ESP_LOGD(TAG, "Pelco-Dcode: %s", command.c_str());
+            ESP_LOGD(TAG, "  Packet: %u", packet);
     }
 
     void PelcoDcode::dump_config() {
