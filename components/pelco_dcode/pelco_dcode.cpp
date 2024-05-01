@@ -45,6 +45,7 @@ void PelcoDcode::send_raw(const uint8_t *payload) {
   write_array(payload,7);
 }
 
+enum PelcoCommand : uint8_t;
 
 bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand command_ID, uint8_t data_1, uint8_t data_2) {
   packet[0] = 0xFF;
