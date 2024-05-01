@@ -1,4 +1,4 @@
-climport esphome.codegen as cg
+import esphome.codegen as cg
 from esphome.components import button
 import esphome.config_validation as cv
 from esphome.const import (
