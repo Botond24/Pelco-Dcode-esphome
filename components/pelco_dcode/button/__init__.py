@@ -25,4 +25,4 @@ async def to_code(config):
     if send_config := config.get(CONF_SEND):
         b = await button.new_button(send_config)
         await cg.register_parented(b, config[CONF_PELCO_ID])
-        cg.add(pelco_component.set_restart_button(b))
+        cg.add(pelco_component.set_send_button(b))
