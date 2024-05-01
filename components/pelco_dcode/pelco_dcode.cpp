@@ -8,9 +8,9 @@ namespace pelco {
 
 void PelcoDcode::setup() {
   ESP_LOGCONFIG(TAG, "Pelco-Dcode starting...");
-  set_parity(esphome::uart::UARTParityOptions::UART_CONFIG_PARITY_NONE);
-  set_data_bits(8);
-  set_stop_bits(1);
+  parent_->set_parity(esphome::uart::UARTParityOptions::UART_CONFIG_PARITY_NONE);
+  parent_->set_data_bits(8);
+  parent_->set_stop_bits(1);
 }
 
 void PelcoDcode::loop() {}
