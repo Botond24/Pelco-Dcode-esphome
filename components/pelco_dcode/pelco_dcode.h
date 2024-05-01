@@ -77,7 +77,7 @@ enum PelcoCommand : uint8_t {
   QUERY
 };
 
-class PelcoDcode : public uart::UARTComponent, public Component {
+class PelcoDcode : public uart::UARTDevice, public Component {
 #ifdef USE_NUMBER
   SUB_NUMBER(data1)
   SUB_NUMBER(data2)
