@@ -9,13 +9,11 @@ from .. import CONF_PELCO_ID, PelcoComponent, pelco_ns
 SendButton = pelco_ns.class_("SendButton", button.Button)
 
 CONF_SEND = "send"
-DEVICE_CLASS_BUTTON = "button"
 
 CONFIG_SCHEMA = {
     cv.GenerateID(CONF_PELCO_ID): cv.use_id(PelcoComponent),
     cv.Optional(CONF_SEND): button.button_schema(
         SendButton,
-        device_class=DEVICE_CLASS_BUTTON,
         entity_category=ENTITY_CATEGORY_CONFIG,
         icon="mdi:send",
     ),
