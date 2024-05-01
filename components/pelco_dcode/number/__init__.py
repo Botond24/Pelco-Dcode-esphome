@@ -15,7 +15,7 @@ CONF_DATA2 = "data2"
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_PELCO_ID): cv.use_id(PelcoComponent),
-        cv.Optional(CONF_DATA2): number.number_schema(
+        cv.Optional(CONF_DATA1): number.number_schema(
             Data1Number,
             entity_category=ENTITY_CATEGORY_CONFIG,
             icon="mdi:cog",
