@@ -1,15 +1,15 @@
-import esphome.codegen as cg
+climport esphome.codegen as cg
 from esphome.components import button
 import esphome.config_validation as cv
 from esphome.const import (
     ENTITY_CATEGORY_CONFIG,
-    DEVICE_CLASS_BUTTON,
 )
 from .. import CONF_PELCO_ID, PelcoComponent, pelco_ns
 
 SendButton = pelco_ns.class_("SendButton", button.Button)
 
 CONF_SEND = "send"
+DEVICE_CLASS_BUTTON = "button"
 
 CONFIG_SCHEMA = {
     cv.GenerateID(CONF_PELCO_ID): cv.use_id(PelcoComponent),
