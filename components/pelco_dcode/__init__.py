@@ -1,29 +1,44 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
+from esphome.cpp_helpers import gpio_pin_expression
 from esphome.components import uart
-from esphome.const import CONF_ID, CONF_UART_ID
+from esphome.const import (
+	CONF_FLOW_CONTROL_PIN,
+	CONF_ID,
+	CONF_ADDRESS,
+)
+from esphome import pins
 
 DEPENDENCIES = ["uart"]
-ADDRESS = "address"
 
-pelco_dcode = cg.register_component("pelco_dcode", cg.Component)
+pelco_ns = cg.esphome_ns.namespace("pelco")
+PelcoComponent = pelco_ns.class_("PelcoDcode", cg.Component, uart.UARTDevice)
+MULTI_CONF = True
+
+CONF_PELCO_ID = "pelco_id"
 
 CONFIG_SCHEMA = (
 	cv.Schema(
 		{
-			cv.GenerateID(): cv.declare_id(pelco_dcode),
-			cv.Required(CONF_UART_ID): cv.use_id(uart.UARTDevice),
-			cv.Optional(ADDRESS, default=1): cv.int_range(1, 255),
+			cv.GenerateID(): cv.declare_id(PelcoComponent),
+			cv.Optional(CONF_FLOW_CONTROL_PIN): pins.gpio_output_pin_schema,
+			cv.Optional(CONF_ADDRESS, default=1): cv.int_range(0, 255),
 		}
 	)
-		.extend(cv.COMPONENT_SCHEMA)
-		.extend(uart.UART_DEVICE_SCHEMA)
+	.extend(cv.COMPONENT_SCHEMA)
+	.extend(uart.UART_DEVICE_SCHEMA)
 )
 
-def to_code(config):
-	var = cg.new_Pvariable(config[CONF_ID])
-	cg.add(var.set_address(config[ADDRESS]))
-	cg.add(var.set_uart(config[CONF_UART_ID]))
 
-	yield cg.register_component(var, config)
-	yield uart.register_uart_device(var, config)
+async def to_code(config):
+	cg.add_global(pelco_ns.using)
+	var = cg.new_Pvariable(config[CONF_ID])
+	await cg.register_component(var, config)
+
+	await uart.register_uart_device(var, config)
+
+	if CONF_FLOW_CONTROL_PIN in config:
+		pin = await gpio_pin_expression(config[CONF_FLOW_CONTROL_PIN])
+		cg.add(var.set_flow_control_pin(pin))
+	cg.add(var.set_address(config[CONF_ADDRESS]))
+
