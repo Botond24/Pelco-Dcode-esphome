@@ -45,14 +45,13 @@ void PelcoDcode::send_raw(const uint8_t *payload) {
   write_array(payload,7);
 }
 
-enum PelcoCommand : uint8_t;
 
 bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand command_ID, uint8_t data_1, uint8_t data_2) {
   packet[0] = 0xFF;
   packet[1] = address;
   // Check command.
   switch (command_ID) {
-    case PelcoCommands::CAMERA_ON:
+    case PelcoCommand::CAMERA_ON:
       packet[2] = 0x0A;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -60,7 +59,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::CAMERA_OFF:
+    case PelcoCommand::CAMERA_OFF:
       packet[2] = 0x02;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -68,7 +67,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::IRIS_CLOSE:
+    case PelcoCommand::IRIS_CLOSE:
       packet[2] = 0x08;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -76,7 +75,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::IRIS_OPEN:
+    case PelcoCommand::IRIS_OPEN:
       packet[2] = 0x0A;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -84,7 +83,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::FOCUS_NEAR:
+    case PelcoCommand::FOCUS_NEAR:
       packet[2] = 0x09;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -92,7 +91,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::FOCUS_FAR:
+    case PelcoCommand::FOCUS_FAR:
       packet[2] = 0x08;
       packet[3] = 0x80;
       packet[4] = 0x00;
@@ -100,7 +99,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::FOCUS_STOP:
+    case PelcoCommand::FOCUS_STOP:
       packet[2] = 0x08;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -108,7 +107,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ZOOM_WIDE:
+    case PelcoCommand::ZOOM_WIDE:
       packet[2] = 0x08;
       packet[3] = 0x40;
       packet[4] = 0x00;
@@ -116,7 +115,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ZOOM_TELE:
+    case PelcoCommand::ZOOM_TELE:
       packet[2] = 0x08;
       packet[3] = 0x20;
       packet[4] = 0x00;
@@ -124,7 +123,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ZOOM_STOP:
+    case PelcoCommand::ZOOM_STOP:
       packet[2] = 0x08;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -132,7 +131,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::DOWN:
+    case PelcoCommand::DOWN:
       packet[2] = 0x08;
       packet[3] = 0x10;
       packet[4] = 0x00;
@@ -140,7 +139,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::UP:
+    case PelcoCommand::UP:
       packet[2] = 0x08;
       packet[3] = 0x08;
       packet[4] = 0x00;
@@ -148,7 +147,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::LEFT:
+    case PelcoCommand::LEFT:
       packet[2] = 0x08;
       packet[3] = 0x04;
       packet[4] = data_1;
@@ -156,7 +155,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::RIGHT:
+    case PelcoCommand::RIGHT:
       packet[2] = 0x08;
       packet[3] = 0x02;
       packet[4] = data_1;
@@ -164,7 +163,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::UP_RIGHT:
+    case PelcoCommand::UP_RIGHT:
       packet[2] = 0x08;
       packet[3] = 0x0A;
       packet[4] = data_1;
@@ -172,7 +171,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::UP_LEFT:
+    case PelcoCommand::UP_LEFT:
       packet[2] = 0x08;
       packet[3] = 0x0C;
       packet[4] = data_1;
@@ -180,7 +179,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::DOWN_RIGHT:
+    case PelcoCommand::DOWN_RIGHT:
       packet[2] = 0x08;
       packet[3] = 0x12;
       packet[4] = data_1;
@@ -188,7 +187,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::DOWN_LEFT:
+    case PelcoCommand::DOWN_LEFT:
       packet[2] = 0x08;
       packet[3] = 0x14;
       packet[4] = data_1;
@@ -196,7 +195,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::STOP:
+    case PelcoCommand::STOP:
       packet[2] = 0x08;
       packet[3] = 0x00;
       packet[4] = 0x00;
@@ -204,7 +203,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_PRESET:
+    case PelcoCommand::SET_PRESET:
       packet[2] = 0x00;
       packet[3] = 0x03;
       packet[4] = 0x00;
@@ -212,7 +211,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::CLEAR_PRESET:
+    case PelcoCommand::CLEAR_PRESET:
       packet[2] = 0x00;
       packet[3] = 0x05;
       packet[4] = 0x00;
@@ -220,7 +219,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::GO_TO_PRESET:
+    case PelcoCommand::GO_TO_PRESET:
       packet[2] = 0x00;
       packet[3] = 0x07;
       packet[4] = 0x00;
@@ -228,7 +227,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::FLIP_180DEG_ABOUT:
+    case PelcoCommand::FLIP_180DEG_ABOUT:
       packet[2] = 0x00;
       packet[3] = 0x07;
       packet[4] = 0x00;
@@ -236,7 +235,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::GO_TO_ZERO_PAN:
+    case PelcoCommand::GO_TO_ZERO_PAN:
       packet[2] = 0x00;
       packet[3] = 0x07;
       packet[4] = 0x00;
@@ -244,7 +243,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_AUXILIARY:
+    case PelcoCommand::SET_AUXILIARY:
       packet[2] = 0x00;
       packet[3] = 0x09;
       packet[4] = 0x00;
@@ -252,7 +251,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::CLEAR_AUXILIARY:
+    case PelcoCommand::CLEAR_AUXILIARY:
       packet[2] = 0x00;
       packet[3] = 0x0B;
       packet[4] = 0x00;
@@ -260,7 +259,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::REMOTE_RESET:
+    case PelcoCommand::REMOTE_RESET:
       packet[2] = 0x00;
       packet[3] = 0x0F;
       packet[4] = 0x00;
@@ -268,7 +267,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_ZONE_START:
+    case PelcoCommand::SET_ZONE_START:
       packet[2] = 0x00;
       packet[3] = 0x11;
       packet[4] = 0x00;
@@ -276,7 +275,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_ZONE_END:
+    case PelcoCommand::SET_ZONE_END:
       packet[2] = 0x00;
       packet[3] = 0x13;
       packet[4] = 0x00;
@@ -284,7 +283,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::WRITE_CHAR_TO_SCREEN:
+    case PelcoCommand::WRITE_CHAR_TO_SCREEN:
       packet[2] = 0x00;
       packet[3] = 0x15;
       packet[4] = data_1;
@@ -292,7 +291,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::CLEAR_SCREEN:
+    case PelcoCommand::CLEAR_SCREEN:
       packet[2] = 0x00;
       packet[3] = 0x17;
       packet[4] = 0x00;
@@ -300,7 +299,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ALARM_ACKNOWLEDGE:
+    case PelcoCommand::ALARM_ACKNOWLEDGE:
       packet[2] = 0x00;
       packet[3] = 0x19;
       packet[4] = 0x00;
@@ -308,7 +307,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ZONE_SCAN_ON:
+    case PelcoCommand::ZONE_SCAN_ON:
       packet[2] = 0x00;
       packet[3] = 0x1B;
       packet[4] = 0x00;
@@ -316,7 +315,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ZONE_SCAN_OFF:
+    case PelcoCommand::ZONE_SCAN_OFF:
       packet[2] = 0x00;
       packet[3] = 0x1D;
       packet[4] = 0x00;
@@ -324,7 +323,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_PATTERN_START:
+    case PelcoCommand::SET_PATTERN_START:
       packet[2] = 0x00;
       packet[3] = 0x1F;
       packet[4] = 0x00;
@@ -332,7 +331,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_PATTERN_STOP:
+    case PelcoCommand::SET_PATTERN_STOP:
       packet[2] = 0x00;
       packet[3] = 0x21;
       packet[4] = 0x00;
@@ -340,7 +339,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::RUN_PATTERN:
+    case PelcoCommand::RUN_PATTERN:
       packet[2] = 0x00;
       packet[3] = 0x23;
       packet[4] = 0x00;
@@ -348,7 +347,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_ZOOM_SPEED:
+    case PelcoCommand::SET_ZOOM_SPEED:
       packet[2] = 0x00;
       packet[3] = 0x25;
       packet[4] = 0x00;
@@ -356,7 +355,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_FOCUS_SPEED:
+    case PelcoCommand::SET_FOCUS_SPEED:
       packet[2] = 0x00;
       packet[3] = 0x27;
       packet[4] = 0x00;
@@ -364,7 +363,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::RESET_CAMERA_TO_DEFAULT:
+    case PelcoCommand::RESET_CAMERA_TO_DEFAULT:
       packet[2] = 0x00;
       packet[3] = 0x29;
       packet[4] = 0x00;
@@ -372,7 +371,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::AUTO_FOCUS_AUTO_ON_OFF:
+    case PelcoCommand::AUTO_FOCUS_AUTO_ON_OFF:
       packet[2] = 0x00;
       packet[3] = 0x2B;
       packet[4] = 0x00;
@@ -380,7 +379,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::AUTO_IRIS_AUTO_ON_OFF:
+    case PelcoCommand::AUTO_IRIS_AUTO_ON_OFF:
       packet[2] = 0x00;
       packet[3] = 0x2D;
       packet[4] = 0x00;
@@ -388,7 +387,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::AGC_AUTO_ON_OFF:
+    case PelcoCommand::AGC_AUTO_ON_OFF:
       packet[2] = 0x00;
       packet[3] = 0x2F;
       packet[4] = 0x00;
@@ -396,7 +395,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::BACKLIGHT_COMPENSATION_ON_OFF:
+    case PelcoCommand::BACKLIGHT_COMPENSATION_ON_OFF:
       packet[2] = 0x00;
       packet[3] = 0x31;
       packet[4] = 0x00;
@@ -404,7 +403,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::AUTO_WHITE_BALANCE_ON_OFF:
+    case PelcoCommand::AUTO_WHITE_BALANCE_ON_OFF:
       packet[2] = 0x00;
       packet[3] = 0x33;
       packet[4] = 0x00;
@@ -412,7 +411,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ENABLE_DEVICE_PHASE_DELAY_MODE:
+    case PelcoCommand::ENABLE_DEVICE_PHASE_DELAY_MODE:
       packet[2] = 0x00;
       packet[3] = 0x35;
       packet[4] = 0x00;
@@ -420,7 +419,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::SET_SHUTTER_SPEED:
+    case PelcoCommand::SET_SHUTTER_SPEED:
       packet[2] = 0x00;
       packet[3] = 0x37;
       packet[4] = 0x00;
@@ -428,7 +427,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_LINE_LOCK_PHASE_DELAY:
+    case PelcoCommand::ADJUST_LINE_LOCK_PHASE_DELAY:
       packet[2] = data_1;
       packet[3] = 0x39;
       packet[4] = 0x00;
@@ -436,7 +435,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_WHITE_BALANCE_R_B:
+    case PelcoCommand::ADJUST_WHITE_BALANCE_R_B:
       packet[2] = data_1;
       packet[3] = 0x3B;
       packet[4] = 0x00;
@@ -444,7 +443,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_WHITE_BALANCE_M_G:
+    case PelcoCommand::ADJUST_WHITE_BALANCE_M_G:
       packet[2] = data_1;
       packet[3] = 0x3D;
       packet[4] = 0x00;
@@ -452,7 +451,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_GAIN:
+    case PelcoCommand::ADJUST_GAIN:
       packet[2] = data_1;
       packet[3] = 0x3F;
       packet[4] = 0x00;
@@ -460,7 +459,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_AUTO_IRIS_LEVEL:
+    case PelcoCommand::ADJUST_AUTO_IRIS_LEVEL:
       packet[2] = data_1;
       packet[3] = 0x41;
       packet[4] = 0x00;
@@ -468,7 +467,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::ADJUST_AUTO_IRIS_PEACK_VALUE:
+    case PelcoCommand::ADJUST_AUTO_IRIS_PEACK_VALUE:
       packet[2] = data_1;
       packet[3] = 0x43;
       packet[4] = 0x00;
@@ -476,7 +475,7 @@ bool PelcoDcode::GetCommand(uint8_t *packet, uint8_t address, PelcoCommand comma
       GetChecksum(packet);
       return true;
 
-    case PelcoCommands::QUERY:
+    case PelcoCommand::QUERY:
       packet[2] = 0x00;
       packet[3] = 0x45;
       packet[4] = 0x00;
